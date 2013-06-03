@@ -69,7 +69,8 @@ session[:tablet_view] # => Set to true if request format is :tablet and false
                            if set to :html
 ```
 
-If you want to exclude all actions from rendering a specific mimetype (ie :mobile or :tablet)
+If you want to use the default response templates, like index.html.erb, instead of the index.tablet.erb you can
+exclude the tablet rendering from beeing used:
 you can create a `before_filter` and put it before the has_mobile_fu call
 
 ```ruby
