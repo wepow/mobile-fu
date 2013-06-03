@@ -69,6 +69,20 @@ session[:tablet_view] # => Set to true if request format is :tablet and false
                            if set to :html
 ```
 
+If you want to exclude all actions from rendering a specific mimetype (ie :mobile or :tablet)
+you can create a `before_filter` and put it before the has_mobile_fu call
+
+```ruby
+before_filter :force_tablet_html
+has_mobile_fu
+
+def force_tablet_html
+	session[:tablet_view] = false
+end
+```
+
+Same will work for mobile, just change the `tablet` values to `mobile`
+
 So, different devices need different styling.  Don't worry, we've got this
 baked in to Mobile Fu.
 
