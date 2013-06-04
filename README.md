@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-If you dont want to have all the methods respond to :movile and :tablet, you can opt-in this actions
+If you dont want to have all the methods respond to :mobile and :tablet, you can opt-in this actions
 using the following class method: `has_mobile_fu_for :action`
 Example:
 
