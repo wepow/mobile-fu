@@ -82,7 +82,7 @@ module ActionController
       def has_no_mobile_fu_for(*actions)
         @mobile_exempt_actions = actions
       end
-      
+
       # Add this to your controllers to only let those actions use the mobile format
       # this method has priority over the #has_no_mobile_fu_for
       #   class AwesomeController < ApplicationController
@@ -181,7 +181,7 @@ module ActionController
         if self.class.instance_variable_get("@mobile_include_actions").nil? #Now we know we dont have any includes, maybe excludes?
           return !mobile_exempt?
         else
-          self.class.instance_variable_get("@mobile_include_actions").try(:include?, params[:action].to_sym)
+          self.class.instance_variable_get("@mobile_include_actions").try(:include?, params[:action].try(:to_sym))
         end
       end
 
@@ -189,7 +189,7 @@ module ActionController
       # See #has_no_mobile_fu_for
 
       def mobile_exempt?
-        self.class.instance_variable_get("@mobile_exempt_actions").try(:include?, params[:action].to_sym)
+        self.class.instance_variable_get("@mobile_exempt_actions").try(:include?, params[:action].try(:to_sym))
       end
     end
   end
