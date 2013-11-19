@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-Once this is in place, any request that comes from a mobile device will be be
+Once this is in place, any request that comes from a mobile device will be
 set as :mobile format.  It is up to you to determine how you want to handle
 these requests.  It is also up to you to create the .mobile.erb versions of
 your views that are to be requested.
