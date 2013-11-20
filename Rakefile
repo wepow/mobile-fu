@@ -1,10 +1,13 @@
-require 'rake'
-require 'bundler'
-Bundler::GemHelper.install_tasks
+require "bundler/gem_tasks"
+require 'rake/testtask'
 
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new('spec')
-task :default => :spec
+task :default => [:test]
+
+Rake::TestTask.new do |t|
+  t.libs.push "lib"
+  t.test_files = FileList['spec/*_spec.rb', 'spec/mobile-fu/*_spec.rb']
+  t.verbose = true
+end
 
 # desc 'Generate documentation for the mobile_fu plugin.'
 # Rake::RDocTask.new(:rdoc) do |rdoc|
