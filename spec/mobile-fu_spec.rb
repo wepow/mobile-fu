@@ -6,7 +6,8 @@ describe "Changes to ActionController" do
 
   [
     ["xxx",  false],
-    ["IPad", true]
+    ["IPad", true],
+    ["Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; Trident/6.0; Touch)", true]
   ].each do |example|
 
     describe "is_tablet_device?" do
