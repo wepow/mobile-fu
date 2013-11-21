@@ -30,11 +30,11 @@ class InstanceMethodDummy
   attr_accessor :user_agent
 
   def request
-    unless @request
-      @request = Object.new
-      @request.stubs(:user_agent).returns user_agent
-    end
-    @request
+    @request ||= begin
+                   r = Object.new
+                   r.stubs(:user_agent).returns user_agent
+                   r
+                 end
   end
 
 end
