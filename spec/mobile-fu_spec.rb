@@ -14,7 +14,7 @@ describe "Changes to ActionController" do
 
       it "should return the expected result" do
         controller.user_agent = example[0]
-        controller.send(:is_tablet_device?).must_equal example[1]
+        controller.is_tablet_device?.must_equal example[1]
       end
 
     end
