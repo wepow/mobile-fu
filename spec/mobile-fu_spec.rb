@@ -31,10 +31,10 @@ class InstanceMethodDummy
 
   def request
     @request ||= begin
-                   r = Object.new
-                   r.stubs(:user_agent).returns user_agent
-                   r
-                 end
+      r = Object.new
+      r.stubs(:user_agent).returns user_agent
+      r
+    end
   end
 
 end
