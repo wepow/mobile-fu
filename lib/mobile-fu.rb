@@ -1,3 +1,4 @@
+require 'mobile-fu/tablet'
 require 'rails'
 require 'rack/mobile-detect'
 
