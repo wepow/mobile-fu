@@ -4,19 +4,15 @@ describe "Changes to ActionController" do
 
   let(:controller) { InstanceMethodDummy.new }
 
-  [
-    ["xxx",  false],
-    ["IPad", true],
-    ["Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; Trident/6.0; Touch)", true]
-  ].each do |example|
+  describe "is_tablet_device?" do
 
-    describe "is_tablet_device?" do
+    let(:user_agent)      { Object.new }
+    let(:expected_result) { Object.new }
 
-      it "should return the expected result" do
-        controller.user_agent = example[0]
-        controller.is_tablet_device?.must_equal example[1]
-      end
-
+    it "should return the result from the tablet module" do
+      controller.user_agent = user_agent
+      ::MobileFu::Tablet.stubs(:is_a_tablet_device?).with(user_agent).returns expected_result
+      controller.is_tablet_device?.must_be_same_as expected_result
     end
 
   end

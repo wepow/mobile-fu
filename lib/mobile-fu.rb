@@ -155,7 +155,7 @@ module ActionController
       # the device making the request is matched to a device in our regex.
 
       def is_tablet_device?
-        !!(request.user_agent.to_s.downcase =~ ::MobileFu::Tablet.user_agents)
+        ::MobileFu::Tablet.is_a_tablet_device? request.user_agent
       end
 
       def is_mobile_device?
