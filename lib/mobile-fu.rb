@@ -32,9 +32,6 @@ end
 
 module ActionController
   module MobileFu
-    # These are various strings that can be found in tablet devices.  Please feel free
-    # to add on to this list.
-    TABLET_USER_AGENTS =  /ipad|android 3.0|xoom|sch-i800|gt-p1000|playbook|tablet|kindle|honeycomb|nexus 7|windows nt [0-9.]+; arm/.freeze
 
     def self.included(base)
       base.extend ClassMethods
@@ -158,7 +155,7 @@ module ActionController
       # the device making the request is matched to a device in our regex.
 
       def is_tablet_device?
-        !!(request.user_agent.to_s.downcase =~ ActionController::MobileFu::TABLET_USER_AGENTS)
+        !!(request.user_agent.to_s.downcase =~ ::MobileFu::Tablet.user_agents)
       end
 
       def is_mobile_device?
