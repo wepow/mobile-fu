@@ -1,6 +1,7 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'json'
+require 'httparty'
 
 task :default => [:test]
 
@@ -12,8 +13,12 @@ end
 
 desc "Pull in data from Mobile Detect"
 task :pull_mobile_detect_data do
+  
+  # call out to Mobile Detect to get the data
+  content = HTTParty.get('https://raw.github.com/serbanghita/Mobile-Detect/master/Mobile_Detect.json').body
+
   # build a new tablet regex
-  data      = JSON.parse(File.read('Mobile_Detect.json'))
+  data      = JSON.parse content
   regexes   = data['uaMatch']['tablets'].each.map { |_, v| v }
   new_regex = regexes.join('|').downcase
 
@@ -21,6 +26,7 @@ task :pull_mobile_detect_data do
   file        = 'lib/mobile-fu/tablet.rb'
   new_content = File.read(file).gsub!(/TABLET_USER_AGENTS = \/.*\//, "TABLET_USER_AGENTS = \/#{new_regex}\/")
   File.open(file, 'w') { |f| f.write new_content }
+
 end
 
 # desc 'Generate documentation for the mobile_fu plugin.'
