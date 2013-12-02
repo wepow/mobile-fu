@@ -12,15 +12,15 @@ end
 
 desc "Pull in data from Mobile Detect"
 task :pull_mobile_detect_data do
-  content = File.read('Mobile_Detect.json')
-  json    = JSON.parse(content)
-  values  = json['uaMatch']['tablets'].each.map { |_, v| v }
-  regex   = values.join('|').downcase
+  # build a new tablet regex
+  data      = JSON.parse(File.read('Mobile_Detect.json'))
+  regexes   = data['uaMatch']['tablets'].each.map { |_, v| v }
+  new_regex = regexes.join('|').downcase
 
-  file = 'lib/mobile-fu/tablet.rb'
-  more_content = File.read(file)
-  more_content.gsub!(/TABLET_USER_AGENTS = \/.*\//, "TABLET_USER_AGENTS = \/#{regex}\/")
-  File.open(file, 'w') { |f| f.write more_content }
+  # rewrite the tablet regex in our file
+  file        = 'lib/mobile-fu/tablet.rb'
+  new_content = File.read(file).gsub!(/TABLET_USER_AGENTS = \/.*\//, "TABLET_USER_AGENTS = \/#{new_regex}\/")
+  File.open(file, 'w') { |f| f.write new_content }
 end
 
 # desc 'Generate documentation for the mobile_fu plugin.'
