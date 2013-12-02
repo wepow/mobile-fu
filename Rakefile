@@ -16,7 +16,11 @@ task :pull_mobile_detect_data do
   json    = JSON.parse(content)
   values  = json['uaMatch']['tablets'].each.map { |_, v| v }
   regex   = values.join('|').downcase
-  p regex
+
+  file = 'lib/mobile-fu/tablet.rb'
+  more_content = File.read(file)
+  more_content.gsub!(/TABLET_USER_AGENTS = \/.*\//, "TABLET_USER_AGENTS = \/#{regex}\/")
+  File.open(file, 'w') { |f| f.write more_content }
 end
 
 # desc 'Generate documentation for the mobile_fu plugin.'
