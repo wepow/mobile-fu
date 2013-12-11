@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "mobile-fu/version"
+require "mobile-fu/version"\
+require 'rake'
 
 Gem::Specification.new do |s|
   s.name        = "mobile-fu"
@@ -14,8 +15,8 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "mobile-fu"
 
-  s.files         = ["CHANGELOG", "MIT-LICENSE", "README.md", "lib/mobile-fu.rb", "lib/mobile-fu/helper.rb", "lib/mobile-fu/version.rb" ]
-  s.test_files    = [ 'spec/mobilized_styles_spec.rb', 'spec/spec_helper.rb' ] 
+  s.files         = FileList['lib/*.rb', '[A-Z]*'].to_a
+  s.test_files    = FileList['test/*.rb'].to_a
   s.executables   = [ ]
   s.require_path  = 'lib'
 
