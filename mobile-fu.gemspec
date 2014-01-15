@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "mobile-fu"
 
-  s.files         = FileList['lib/*.rb', '[A-Z]*'].to_a
+  s.files         = FileList['lib/**/*.rb', '[A-Z]*'].to_a
   s.test_files    = FileList['test/*.rb'].to_a
   s.executables   = [ ]
   s.require_path  = 'lib'
